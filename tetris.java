@@ -170,11 +170,26 @@ public class Shape {
     private int[][] coords;
 
     public Shape() {
-        
+        coords = new int[4][2];
+        setShape(Tetrominoe.Tetrominoes.NoShape);
     }
 
     public void setShape(Tetrominoe.Tetrominoes shape) {
-        
+        int[][][] coordsTable = new int[][][] {
+            { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
+            { { 0, -1 },  { 0, 0 },   { -1, 0 },  { -1, 1 } },
+            { { 0, -1 },  { 0, 0 },   { 1, 0 },   { 1, 1 } },
+            { { 0, -1 },  { 0, 0 },   { 0, 1 },   { 0, 2 } },
+            { { -1, 0 },  { 0, 0 },   { 1, 0 },   { 0, 1 } },
+            { { 0, 0 },   { 1, 0 },   { 0, 1 },   { 1, 1 } },
+            { { -1, -1 }, { 0, -1 },  { 0, 0 },   { 0, 1 } },
+            { { 1, -1 },  { 0, -1 },  { 0, 0 },   { 0, 1 } }
+        };
+
+        for (int i = 0; i < 4; i++) {
+            System.arraycopy(coordsTable[shape.ordinal()], 0, coords, 0, 4);
+        }
+        pieceShape = shape;
     }
 
     public void setRandomShape() {
